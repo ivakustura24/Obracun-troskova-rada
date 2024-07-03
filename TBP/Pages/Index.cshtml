@@ -1,0 +1,31 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="text-center">
+    <h1 class="display-4">Dobrodošli </h1>
+    <h2>Prijavi se </h2>
+</div>
+<div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" action="" >
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail:</label>
+                        <input asp-for="email" class="form-control" placeholder="Unesite e-mail" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="lozinka" class="form-label">Lozinka:</label>
+                        <input asp-for="lozinka" type="password" class="form-control" placeholder="Unesite lozinku" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Prijavi se</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    

@@ -1,0 +1,51 @@
+﻿@page
+@model PlatnaListaModel
+@{
+    ViewData["Title"] = "Platna lista";
+}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .obracun-li{
+        margin-bottom: 5px;
+        padding-left: 40px;
+    }
+    
+</style>
+<div class="platna-lista">
+    <div class="header">Platna Lista</div>
+    <div class="info">
+        <label>Datum početka:</label> @Model.PlatnaListaKorisnika.DatumPocetka
+    </div>
+    <div class="info">
+        <label>Datum završetka:</label> @Model.PlatnaListaKorisnika.DatumZavrsetka
+    </div>
+    @foreach (var obracun in Model.PlatnaListaObracuni.Obracuni)
+    {
+        <div class="info">
+            <ul>
+                <li class="obracun-li"> Posao : @obracun.PosaoNaziv</li>
+                <li class="obracun-li"> Moderator : @obracun.ModeratorIme @obracun.ModeratorPrezime</li>
+                <li class="obracun-li"> Datum obračuna : @obracun.DatumObracuna </li>
+                <li class="obracun-li"> Ukupna bruto vrijednost obračuna : @obracun.UkupnoBruto € </li>
+            </ul>
+        </div>
+    }
+
+    
+    
+    <div class="info">
+        <label>Ukupno:</label> @Model.PlatnaListaKorisnika.Ukupno €
+    </div>
+</div>
+
+
+

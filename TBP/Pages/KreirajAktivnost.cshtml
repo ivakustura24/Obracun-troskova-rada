@@ -1,0 +1,50 @@
+﻿@page
+@model KreirajAktivnost
+@{
+    ViewData["Title"] = "Kreiraj aktivnost ";
+}
+<div class="container">
+    <div class="row">
+    <div class="col-md-6">
+        <h1 class="mt-4 mb-3">Dodavanje Aktivnosti</h1>
+        <form method="post">
+                <div class="mb-3">
+                    <label for="posaoId" class="form-label">Posao:</label>
+                    <select class="form-control" id="posaoId" asp-for="OdabraniPosao" required>
+                        <option value="">Odaberite posao</option>
+                        @foreach (var posao in Model.Poslovi)
+                        {
+                            <option value="@posao.Id">@posao.Naziv</option>
+                        }
+                    </select>
+                </div>
+            <div class="mb-3">
+                <label for="naziv" class="form-label">Naziv aktivnosti:</label>
+                <input type="text" class="form-control" id="naziv" asp-for="Naziv" placeholder="Unesite naziv aktivnosti" required>
+            </div>
+            <div class="mb-3">
+                <label for="mjernaJedinica" class="form-label">Mjerna jedinica:</label>
+                <input type="text" class="form-control" id="mjernaJedinica" asp-for="MjernaJedinica" placeholder="Unesite mjernu jedinicu" required>
+            </div>
+                <div class="mb-3">
+                    <label for="netoVrijednost" class="form-label">Neto vrijednost:</label>
+                    <input type="text" class="form-control" id="netoVrijednost" asp-for="NetoVrijednost" placeholder="Unesite neto vrijednost (€)" required>
+                </div>
+
+            <button type="submit" class="btn btn-primary">Dodaj aktivnost</button>
+        </form>
+    </div>
+        <div class="col-md-6">
+            <h1 class="mt-4 mb-3">Popis Aktivnosti</h1>
+            <ul class="list-group">
+                @foreach (var aktivnost in Model.aktivnosti)
+                {
+                    <li class="list-group-item">
+                        <strong>@aktivnost.Naziv</strong> - @aktivnost.Jedinica
+                        <p>@aktivnost.Neto €</p>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

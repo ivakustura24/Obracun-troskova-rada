@@ -1,0 +1,36 @@
+﻿@page
+@model DodajPosao
+@{
+    ViewData["Title"] = "Dodaj posao";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="mt-4 mb-3">Dodavanje Posla</h1>
+            <form method="post">
+                <div class="mb-3">
+                    <label for="nazivPosla" class="form-label">Naziv posla:</label>
+                    <input type="text" class="form-control" id="nazivPosla" asp-for="NazivPosla" placeholder="Unesite naziv posla" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Dodaj Posao</button>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <h1 class="mt-4 mb-3">Popis Poslova</h1>
+            <ul class="list-group">
+                @foreach (var posao in Model.AktivnostiPosao)
+                {
+                    <p> @posao.Posao</p>
+                    @foreach( var aktivnost in posao.Aktivnosti)
+                    {
+                    <li class="list-group-item">
+                            <strong>@aktivnost</strong>
+                    </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

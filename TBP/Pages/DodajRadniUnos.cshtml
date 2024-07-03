@@ -1,0 +1,38 @@
+﻿@page
+@model DodajRadniUnos
+@{
+    ViewData["Title"] = "Radni unosi";
+}
+<h1>@ViewData["Title"]</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="mt-4 mb-3">Unos Rada</h1>
+            <form method="post">
+                <div class="mb-3">
+                    <label for="posaoId" class="form-label">Posao:</label>
+                    <select class="form-control" id="posaoId" asp-for="OdabraniPosao" required>
+                        <option value="">Odaberite posao</option>
+                        @foreach (var posao in Model.Poslovi)
+                        {
+                            <option value="@posao.Id">@posao.Naziv</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="datumPocetka">Datum Početka:</label>
+                    <input type="datetime-local" class="form-control" id="datumPocetka" asp-for="@Model.DatumPocetka" required>
+                </div>
+                <div class="mb-3">
+                    <label for="datumZavrsetka">Datum Završetka:</label>
+                    <input type="datetime-local" class="form-control" id="datumPocetka" asp-for="@Model.DatumZavrsetka" required>
+                </div>
+                <div class="mb-3">
+                    <label for="opis"> Opis:</label>
+                    <input type="textarea" class="form-control" id="opis" asp-for="@Model.Opis" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Spremi</button>
+            </form>
+        </div>
+    </div>
+</div>

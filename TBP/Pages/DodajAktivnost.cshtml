@@ -1,0 +1,73 @@
+﻿@page
+@model DodajAktivnost
+@{
+    ViewData["Title"] = "Radni unosi";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="mt-4 mb-3">Unos aktivnosti</h1>
+            <form method="post">
+                <div class="form-group">
+                    <label for="aktivnostId">Aktivnost:</label>
+                    <select class="form-control" asp-for="@Model.OdabranaAktivnost" required>
+                        <option value="">Odaberi aktivnost...</option>
+                        @foreach (var aktivnost in Model.Aktivnosti)
+                        {
+                            <option value="@aktivnost.Id">@aktivnost.Naziv</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="brojJedinica">Broj Jedinica:</label>
+                    <input type="number" class="form-control" asp-for="BrojJedinica" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Spremi Aktivnost</button>
+            </form>
+            <h2 class="mt-4 mb-3">Aktivnosti</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Aktivnost</th>
+                        <th scope="col">Mjerna Jedinica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var aktivnost in Model.Aktivnosti)
+                    {
+                        <tr>
+                            <td>@aktivnost.Naziv</td>
+                            <td>@aktivnost.Jedinica</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h1 class="mt-4 mb-3">Detalji radnog unosaneke </h1>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>@Model.OdabraniUnos.Opis</strong>
+                    <p>Datum početka: @Model.OdabraniUnos.DatumPocetka.ToShortDateString()</p>
+                    <p>Datum završetka: @Model.OdabraniUnos.DatumZavrsetka.ToShortDateString()</p>
+                    <p>Opis: @Model.OdabraniUnos.Opis</p>
+                    @if(Model.AktivnostiUnosa != null)
+                    {
+                        <p>Dodane aktivnosti unosa:</p>
+                        <ul style="margin-left: 20px;">
+                            @foreach (var aktivnost in @Model.AktivnostiUnosa)
+                            {
+                                <li>@aktivnost</li>
+                            }
+                        </ul>
+                    }
+                    <p>Ukupni neto: @Model.OdabraniUnos.UkupnoNeto €</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

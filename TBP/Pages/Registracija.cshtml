@@ -1,0 +1,44 @@
+﻿@page
+@model Registracija
+@{
+    ViewData["Title"] = "Registracija";
+}
+<h2>@ViewData["Title"]</h2>
+<div class="container w-50">
+    <form method="post" action="">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="@Model.noviKorisnik.Ime"></label>
+            <input asp-for="@Model.noviKorisnik.Ime" class="form-control" />
+            <span asp-validation-for="@Model.noviKorisnik.Ime" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.noviKorisnik.Prezime"></label>
+            <input asp-for="@Model.noviKorisnik.Prezime" class="form-control" />
+            <span asp-validation-for="@Model.noviKorisnik.Prezime" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.noviKorisnik.Email"></label>
+            <input asp-for="@Model.noviKorisnik.Email" class="form-control" />
+            <span asp-validation-for="@Model.noviKorisnik.Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.noviKorisnik.Lozinka"></label>
+            <input asp-for="@Model.noviKorisnik.Lozinka" type="password" class="form-control" />
+            <span asp-validation-for="@Model.noviKorisnik.Lozinka" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" asp-for="Moderator"> Moderator? 
+            </label>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Registriraj se</button>
+    </form>
+
+</div>
